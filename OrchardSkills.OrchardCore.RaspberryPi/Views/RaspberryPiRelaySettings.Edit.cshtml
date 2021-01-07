@@ -1,0 +1,18 @@
+@using OrchardSkills.OrchardCore.RaspberryPi.Relay.ViewModels;
+@model RaspberryPiRelaySettingsViewModel;
+
+<p class="alert alert-warning">
+    @T["The current tenant will be reloaded when the settings are saved."]
+    <a class="seedoc" href="@(OrchardCore.Admin.Constants.DocsUrl)reference/modules/Google/#google-analytics" target="_blank">@T["See documentation"]</a>
+</p>
+
+<h3>@T["Raspberry Pi Relay Settings"]</h3>
+
+<div class="form-group row" asp-validation-class-for="GpioPin">
+    <div class="col-large">
+        <label asp-for="GpioPin">@T["GPIO Pin"]</label>
+        <input asp-for="GpioPin" class="form-control" autocomplete="off" />
+        <span asp-validation-for="GpioPin"></span>
+        <span class="hint">@T["The GPIO Pin Number."]</span>
+    </div>
+</div>

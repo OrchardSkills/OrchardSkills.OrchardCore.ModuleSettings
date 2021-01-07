@@ -1,0 +1,16 @@
+@using OrchardCore.ContentManagement
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var linkMenuItemPart = contentItem.As<LinkMenuItemPart>();
+    int level = (int)Model.Level;
+
+    TagBuilder tag = Tag(Model, "a");
+    tag.Attributes["href"] = linkMenuItemPart.Url;
+    tag.InnerHtml.Append(linkMenuItemPart.Name);
+
+    if (Model.Level == 0 && Model.HasItems)
+    {
+        tag.InnerHtml.AppendHtml("<b class=\"caret\"></b>");
+    }
+}
+@tag

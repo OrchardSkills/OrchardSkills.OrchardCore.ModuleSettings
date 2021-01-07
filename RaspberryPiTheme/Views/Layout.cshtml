@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="@Orchard.CultureName()">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@RenderTitleSegments(Site.SiteName, "before")</title>
+    <link type="image/x-icon" rel="shortcut icon" href="/RaspberryPiTheme/favicon.ico">
+
+    <!-- Material Design Theme CSS -->
+    <style asp-name="RaspberryPiTheme-css" , version:"1"></style>
+
+    <!-- Custom styles -->
+    <style asp-src="~/RaspberryPiTheme/css/styles.css" debug-src="~/RaspberryPiTheme/css/styles.css"></style>
+
+    <!-- Custom fonts for this template -->
+    <style asp-name="RaspberryPiTheme-vendor-font-awesome" version="5"></style>
+
+    <!-- Material Design Theme JavaScript -->
+    <script asp-name="RaspberryPiTheme-js" at="Foot" version="1"></script>
+
+
+    <resources type="Meta" />
+    <resources type="HeadLink" />
+    <resources type="Stylesheet" />
+    <resources type="HeadScript" />
+    @await RenderSectionAsync("HeadMeta", required: false)
+</head>
+
+<body dir="@Orchard.CultureDir()">
+    <nav class="navbar navbar-expand-lg navbar-color" id="mainNav" style="position: sticky;
+right: 0;
+left: 0;
+z-index: 1030;">
+        <div class="container">
+            <div class="logo">
+                <a class="navbar-brand" href="~/#"><img width="40px" height="40px"
+                        src="/RaspberryPiTheme/icons/icon-90x90.png" alt="Logo">@Site.SiteName</a>
+                <!-- Toggle button -->
+                <label id="switch" class="switch navbar-item">
+                    <input type="checkbox" onchange="toggleTheme()" id="slider" aria-label="Theme Switch">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <button class="navbar-toggler nav-tgl" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                
+                <div class="text-center ms-auto">
+
+
+                    <a style="color: #fff !important;" type="button"
+                        href="https://www.facebook.com/Orchard-Skills-106748460853728/" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        aria-label="Facebook"
+                        rel="noopener"
+                        class="btn logo-color btn-floating mx-1">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a style="color: #fff !important;" type="button" href="https://twitter.com/OrchardSkills/" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        aria-label="Twitter"
+                        rel="noopener"
+                        class="btn logo-color btn-floating mx-1">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a style="color: #fff !important;" type="button" href="https://github.com/OrchardSkills/" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                         aria-label="GitHub"
+                         rel="noopener"
+                        class="btn logo-color btn-floating mx-1"> 
+                        <i class="fab fa-github"></i>
+                    </a>
+
+                    <a style="color: #fff !important;" type="button"
+                        href="https://www.youtube.com/channel/UCTwti4IV-uER89I39lTln0Q/" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                         aria-label="YouTube"
+                         rel="noopener"
+                        class="btn logo-color btn-floating mx-1">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                </div>
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <menu alias="alias:main-menu" cache-id="main-menu" cache-fixed-duration="00:05:00"
+                        cache-tag="alias:main-menu" />
+                    <partial name="LoginMenu" />
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+    @await RenderSectionAsync("Header", required: false)
+    <main role="main" class="container">
+        @await RenderSectionAsync("Messages", required: false)
+        @await RenderBodyAsync()
+    </main>
+    @if (ThemeLayout["Footer"] != null)
+    {
+        <footer>
+            <div class="container">
+                @await RenderSectionAsync("Footer", required: false)
+            </div>
+        </footer>
+    }
+    <resources type="FootScript" />
+
+    <script>
+
+        // function to set a given theme/color-scheme
+        function setTheme(themeName) {
+            localStorage.setItem('theme', themeName);
+            document.documentElement.className = themeName;
+        }
+        // function to toggle between light and dark theme
+        function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-light') {
+                setTheme('theme-dark');
+            } else {
+                setTheme('theme-light');
+            }
+        }
+        // Immediately invoked function to set the theme on initial load
+        (function () {
+            if (localStorage.getItem('theme') === 'theme-light') {
+                setTheme('theme-light');
+                document.getElementById('slider').checked = false;
+            } else {
+                setTheme('theme-dark');
+                document.getElementById('slider').checked = true;
+            }
+        })();
+    </script>
+</body>
+
+</html>

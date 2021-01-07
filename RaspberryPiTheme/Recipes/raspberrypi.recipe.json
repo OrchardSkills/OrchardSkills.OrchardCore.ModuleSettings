@@ -1,0 +1,78 @@
+{
+  "name": "RaspberryPi",
+  "displayName": "Raspberry Pi Theme",
+  "description": "A theme designed for the Raspberry Pi.",
+  "author": "Orchard Skills",
+  "website": "https://orchardskills.com",
+  "version": "1.0.0-rc2",
+  "issetuprecipe": true,
+  "categories": [ "default" ],
+  "tags": [ "developer", "default" ],
+  "steps": [
+    {
+      "name": "feature",
+      "enable": [
+        // SaaS
+        "OrchardCore.Admin",
+        "OrchardCore.Diagnostics",
+        "OrchardCore.DynamicCache",
+        "OrchardCore.HomeRoute",
+        "OrchardCore.Localization",
+        "OrchardCore.Features",
+        "OrchardCore.Navigation",
+        "OrchardCore.Recipes",
+        "OrchardCore.Resources",
+        "OrchardCore.Roles",
+        "OrchardCore.Settings",
+        "OrchardCore.Tenants",
+        "OrchardCore.Themes",
+        "OrchardCore.Users",
+        "OrchardCore.Users.ChangeEmail",
+        "OrchardCore.Users.Registration",
+        "OrchardCore.Users.ResetPassword",
+
+        // Themes
+        "RaspberryPiTheme",
+        "TheAdmin",
+        "SafeMode"
+      ]
+    },
+    {
+      "name": "themes",
+      "admin": "TheAdmin",
+      "site": "RaspberryPiTheme"
+    },
+    {
+      "name": "settings",
+      "HomeRoute": {
+        "Action": "Index",
+        "Controller": "Home",
+        "Area": "RaspberryPiTheme"
+      },
+      "ChangeEmailSettings": {
+        "AllowChangeEmail": true
+      },
+      "LoginSettings": {
+        "UseSiteTheme": true,
+        "UseExternalProviderIfOnlyOneDefined": false,
+        "DisableLocalLogin": false,
+        "UseScriptToSyncRoles": false,
+        "SyncRolesScript": null
+      },
+      "RegistrationSettings": {
+        "UsersCanRegister": 1,
+        "UsersMustValidateEmail": true,
+        "UseSiteTheme": true,
+        "NoPasswordForExternalUsers": false,
+        "NoUsernameForExternalUsers": false,
+        "NoEmailForExternalUsers": false,
+        "UseScriptToGenerateUsername": false,
+        "GenerateUsernameScript": null
+      },
+      "ResetPasswordSettings": {
+        "AllowResetPassword": true,
+        "UseSiteTheme": true
+      }
+    }
+  ]
+}

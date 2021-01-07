@@ -1,0 +1,21 @@
+@inject IOptions<AutorouteOptions> AutorouteOptions
+@{
+    ContentItem contentItem = Model.ContentItem;
+    var menuItemPart = contentItem.As<ContentMenuItemPart>();
+    var routeValues = new RouteValueDictionary(AutorouteOptions.Value.GlobalRouteValues);
+    routeValues[AutorouteOptions.Value.ContentItemIdKey] = menuItemPart.ContentItem.Content.ContentMenuItemPart.SelectedContentItem.ContentItemIds[0];
+    var linkUrl = Url.RouteUrl(routeValues);
+
+    TagBuilder tag = Tag(Model, "a");
+    tag.Attributes["href"] = linkUrl;
+    tag.InnerHtml.Append(menuItemPart.Name);
+    tag.AddCssClass("nav-link dropdown-toggle bottom-line-hover");
+    tag.Attributes.Add("data-mdb-toggle","dropdown");
+
+    if (Model.Level == 0 && Model.HasItems)
+    {
+        tag.InnerHtml.AppendHtml("<b class=\"caret\"></b>");
+    }
+}
+
+@tag
