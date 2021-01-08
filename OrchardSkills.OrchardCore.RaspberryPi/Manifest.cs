@@ -9,10 +9,3 @@ using OrchardSkills.OrchardCore.RaspberryPi;
     Description = "Raspberry Pi module devices",
     Category = "RaspberryPi"
 )]
-
-[assembly: Feature(
-    Id = RaspberryPiConstants.Features.RaspberryPiRelay,
-    Name = "RaspberryPi Relay",
-    Category = "RaspberryPi",
-    Description = "Integrate Raspberry Pi Relay"
-)]

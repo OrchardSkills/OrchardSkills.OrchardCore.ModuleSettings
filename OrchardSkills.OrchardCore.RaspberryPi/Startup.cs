@@ -20,6 +20,10 @@ namespace OrchardSkills.OrchardCore.RaspberryPi
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<RelayDevice>();
+            services.AddScoped<IPermissionProvider, Permissions.RaspberryPiRelay>();
+            services.AddRecipeExecutionStep<RaspberryPiRelaySettingsStep>();
+            services.AddScoped<IDisplayDriver<ISite>, RaspberryPiRelaySettingsDisplayDriver>();
+            services.AddScoped<INavigationProvider, RaspberryPiRelayAdminMenu>();
         }
 
         public override void Configure(IApplicationBuilder builder, IEndpointRouteBuilder routes, IServiceProvider serviceProvider)
@@ -30,18 +34,6 @@ namespace OrchardSkills.OrchardCore.RaspberryPi
                 pattern: "Relay",
                 defaults: new { controller = "Relay", action = "Index" }
             );
-        }
-    }
-    [Feature(RaspberryPiConstants.Features.RaspberryPiRelay)]
-    public class RaspberryPiRelayStartup : StartupBase
-    {
-        public override void ConfigureServices(IServiceCollection services)
-        {
-            
-            services.AddScoped<IPermissionProvider, Permissions.RaspberryPiRelay>();
-            services.AddRecipeExecutionStep<RaspberryPiRelaySettingsStep>();
-            services.AddScoped<IDisplayDriver<ISite>, RaspberryPiRelaySettingsDisplayDriver>();
-            services.AddScoped<INavigationProvider, RaspberryPiRelayAdminMenu>();
         }
     }
 }
