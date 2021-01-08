@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OrchardSkills.OrchardCore.RaspberryPi
+﻿namespace OrchardSkills.OrchardCore.RaspberryPi
 {
     public static class RaspberryPiConstants
     {

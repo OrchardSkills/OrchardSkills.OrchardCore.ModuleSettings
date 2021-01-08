@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Extensions.Options;
 using OrchardCore.Entities;
 using OrchardCore.Settings;
 using System.Device.Gpio;
