@@ -1,6 +1,9 @@
 ﻿using System;
+using Microsoft.Extensions.Options;
+using OrchardCore.Entities;
+using OrchardCore.Settings;
 using System.Device.Gpio;
-using OrchardSkills.OrchardCore.RaspberryPi.Relay.ViewModels;
+using OrchardSkills.OrchardCore.RaspberryPi.Relay.Settings;
 
 namespace OrchardSkills.OrchardCore.RaspberryPi.Devices
 {
@@ -11,10 +14,16 @@ namespace OrchardSkills.OrchardCore.RaspberryPi.Devices
         private object _locker = new object();
         private bool relaySupported = true;
         private int relayGpioPin = 17;
-        public RelayDevice()
+        private readonly ISiteService _siteService;
+        public RelayDevice(ISiteService siteServive)
         {
             try
             {
+                _siteService = siteServive;
+                var raspberryPiRelaySettings = _siteService.GetSiteSettingsAsync()
+                    .GetAwaiter().GetResult()
+                    .As<RaspberryPiRelaySettings>();
+                relayGpioPin = raspberryPiRelaySettings.GpioPin;
                 _controller = new GpioController();
                 _controller.OpenPin(relayGpioPin, PinMode.Output);
                 _controller.Write(relayGpioPin, PinValue.Low);
