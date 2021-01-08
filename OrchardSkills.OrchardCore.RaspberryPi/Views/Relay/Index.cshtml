@@ -1,4 +1,4 @@
-
+@model RaspberryPiRelaySettingsViewModel
 <br />
 <!-- Background image -->
 <div class="p-5 text-center bg-image" style="
@@ -21,6 +21,7 @@
             <div class="text-white">
                 <h1 class="mb-3">Raspberry Pi IoT Relay</h1>
                 <h4 class="mb-3">Relay device supported <strong>@ViewBag.ReplaySupported</strong></h4>
+                <h4 class="mb-3">GPIO Pin # <strong>@ViewBag.RelayGpioPin</strong></h4>
                 <h4 class="mb-3">Relay is <strong>@ViewBag.ReplayState</strong></h4>
 
                 <a class="btn btn-outline-success btn-lg" asp-action="ReplayOn">Turn on</a> |

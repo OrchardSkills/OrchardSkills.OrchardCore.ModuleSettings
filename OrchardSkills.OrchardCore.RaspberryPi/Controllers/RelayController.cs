@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OrchardSkills.OrchardCore.RaspberryPi.Devices;
 
@@ -10,6 +5,7 @@ namespace OrchardSkills.OrchardCore.RaspberryPi.Controllers
 {
     public class RelayController : Controller
     {
+        
         private readonly RelayDevice _relayDevice;
 
         public RelayController(RelayDevice relayDevice)
@@ -21,6 +17,7 @@ namespace OrchardSkills.OrchardCore.RaspberryPi.Controllers
         {
             ViewBag.ReplaySupported = _relayDevice.IsReplaySupported ? "Yes" : "No";
             ViewBag.ReplayState = _relayDevice.IsReplayOn ? "On" : "Off";
+            ViewBag.RelayGpioPin = _relayDevice.RelayGpioPin.ToString();
             return View();
         }
 
